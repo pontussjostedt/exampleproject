@@ -1,9 +1,17 @@
 <script lang="ts">
+	let inputContent = '';
+	let tasks: string[] = [];
+	const onclick = () => {
+		//called everytime we press the add button
+		tasks.push(inputContent);
+		console.log(tasks);
+	};
 </script>
 
 <div class="flex h-screen flex-col items-center justify-center">
-	<p class="text-3xl font-bold">This is a starter template</p>
-	<a href="https://eee.esek.se" class="mt-2 text-sky-400">esek.se</a>
+	<p>text</p>
+	<input class="border-2 border-pink-400" bind:value={inputContent} />
+	<button class="bg-pink-400" on:click={onclick}>Add</button>
 </div>
 
 <style lang="scss">
