@@ -1,11 +1,23 @@
 <script lang="ts">
+	import config from "@/public-config"
+	import { onMount } from "svelte";
+	import type { PageData } from "./$types";
+
 	let inputContent = '';
 	let tasks: string[] = [];
 
-	const onclick = () => {
-		//called everytime we press the add button
-		tasks = [...tasks, inputContent]; // need to reasign tasks for svelte to update foreach block
+	const onclick = async () => {
+		if(inputContent.length > 0){
+			await fetch(`${config.API_URL}/addmessage?message=${inputContent}`, {headers: {Origin: "http://localhost:3000"}}) //bad practice to hardcode in url string
+			tasks = [...tasks, inputContent]; // need to reasign tasks for svelte to update foreach block
+		}
 	};
+
+	export let data: PageData
+
+	onMount(() => {
+		tasks = data.messages
+	})
 </script>
 
 <div class="flex h-screen flex-col items-center justify-items-center">

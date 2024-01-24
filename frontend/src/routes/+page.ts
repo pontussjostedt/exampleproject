@@ -9,8 +9,10 @@ export const load: PageLoad = async ({fetch}) => {
         }
         
     })
-    const json = res.json()
-    console.log(json)
-    return json 
+    const messages: string[] = await res.json() ?? []
+
+    return {
+        messages: messages
+    }
 
 }
