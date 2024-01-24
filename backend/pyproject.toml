@@ -1,4 +1,4 @@
 [project]
 name = "myproject"
 version="0.1"
-dependencies = ["strawberry-graphql[debug.server]", "fastapi"]
+dependencies = ["strawberry-graphql[debug.server]", "fastapi", "uvicorn"]
