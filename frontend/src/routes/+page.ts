@@ -1,6 +1,6 @@
 import config from '@/public-config';
 import type { PageLoad } from './$types';
-export const load: PageLoad = async ({fetch}) => {
+export const load: PageLoad = async ({fetch, depends}) => {
     console.log("SEND REQUEST")
     const res = await fetch(`${config.API_URL}/messages/`, {
         mode: "cors",
@@ -9,6 +9,9 @@ export const load: PageLoad = async ({fetch}) => {
         }
         
     })
+
+    depends("app:data") // https://kit.svelte.dev/docs/load
+
     const messages: string[] = await res.json() ?? []
 
     return {
